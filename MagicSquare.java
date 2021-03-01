@@ -25,7 +25,52 @@ public class MagicSquare
      */
     public boolean isMagicSquare()
     {
-        return false;   // complete this method
+        if (array.length != array[0].length) {
+          return false;
+        }
+        int constant = 0;
+        int sum = 0;
+        //get sum of first row for target #
+        for (int i = 0; i < array.length; i++) {
+          constant += array[0][i];
+        }
+        //checks each row for constant
+        for (int i = 0; i < array.length; i++) {
+          sum = 0;
+          for (int j = 0; j < array[0].length; j++) {
+            sum += array[i][j];
+          }
+          if (sum != constant) {
+            return false;
+          }
+        }
+        //checks each column for constant
+        for (int j = 0; j < array[0].length; j++) {
+          sum = 0;
+          for (int i = 0; i < array.length; i++) {
+             sum += array[i][j];
+          }
+          if (sum != constant) {
+            return false;
+          }
+        }
+        //checks the TR-BL diagonal for constant
+        sum = 0;
+        for (int i = 0; i < array.length; i++) {
+          sum += array[i][array[0].length - 1 - i];
+        }
+        if (sum != constant) {
+          return false;
+        }
+        //checks the TL-BR dagonal for constant
+        sum = 0;
+        for (int i = 0; i < array.length; i++) {
+          sum += array[i][i];
+        }
+        if (sum != constant) {
+          return false;
+        }
+        return true;   // complete this method
     }
 
     /**
